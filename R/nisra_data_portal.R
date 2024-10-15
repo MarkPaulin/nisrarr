@@ -1,9 +1,7 @@
-cache <- cachem::cache_disk(path.expand("~/.nisrarr"))
-
 nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
+  cache <- cachem::cache_disk(path.expand("~/.nisrarr"))
   params <- list(...)
-  key <- paste0(method, ...)
-  key <- stringr::str_replace_all(key, "\\.", "_")
+  key <- rlang::hash(list(method, params))
 
   if (cache$exists(key) && !flush_cache) {
     return(cache$get(key))
@@ -30,7 +28,7 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
     ))
   }
 
-  cache$set(key)
+  cache$set(key, resp)
 
   resp
 }
@@ -38,6 +36,7 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
 #' Read NISRA data portal dataset
 #'
 #' @param dataset_code Dataset code
+#' @param flush_cache Ignore cached values
 #'
 #' @return A [tibble::tibble()] with the dataset.
 #' @export
@@ -114,11 +113,16 @@ nisra_read_collection <- function(datefrom = NULL, flush_cache = FALSE) {
     }, character(1))
   })
 
+  updated_dates <- lubridate::ymd_hms(vapply(resp$result$link$item, \(x) {
+    x[["updated"]]
+  }, character(1)))
+
   tibble::tibble(
     dataset_code = codes,
     dataset_label = labels,
     frequency = frequencies,
-    dataset_dimensions = dimensions
+    dataset_dimensions = dimensions,
+    updated = updated_dates
   )
 }
 

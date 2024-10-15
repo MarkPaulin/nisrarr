@@ -1,15 +1,13 @@
 Package: nisrarr
-Title: What the Package Does (One Line, Title Case)
+Title: Download data from the NISRA data portal
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Mark", "Paulin", email = "mark.paulin@nisra.gov.uk", role = c("aut", "cre"))
+Description: Download data from the NISRA data portal, accessed at <http://data.nisra.gov.uk>.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.3.2
 Imports: 
     cachem,
     cli,
@@ -18,4 +16,6 @@ Imports:
     jsonlite,
     lubridate,
     readr,
-    rjstat
+    rlang,
+    stringr,
+    tibble
