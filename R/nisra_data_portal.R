@@ -1,5 +1,5 @@
 nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
-  cache <- cachem::cache_disk(path.expand("~/.nisrarr"))
+  cache <- cachem::cache_disk(path.expand("~/.nisrarr"), max_age = 60 * 60 * 24)
   params <- list(...)
   key <- rlang::hash(list(method, params))
 
@@ -14,9 +14,13 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
   )
 
   query_json <- jsonlite::toJSON(query_data, auto_unbox = TRUE)
-  resp <- httr2::request("https://ws-data.nisra.gov.uk/public/api.jsonrpc") |>
+
+  req <- httr2::request("https://ws-data.nisra.gov.uk/public/api.jsonrpc") |>
+    httr2::req_throttle(10 / 60) |>
     httr2::req_url_query(data = query_json) |>
-    httr2::req_user_agent("nisrarr (http://github.com/MarkPaulin/nisrarr)") |>
+    httr2::req_user_agent("nisrarr (http://github.com/MarkPaulin/nisrarr)")
+
+  resp <- req |>
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = TRUE, simplifyDataFrame = FALSE)
 
