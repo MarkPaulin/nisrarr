@@ -13,4 +13,5 @@ RoxygenNote: 7.0.0
 Imports: 
     httr2,
     jsonlite,
+    readr,
     rjstat
