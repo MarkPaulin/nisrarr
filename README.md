@@ -4,6 +4,8 @@
 # nisrarr
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/MarkPaulin/nisrarr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MarkPaulin/nisrarr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `nisrarr` is a package for accessing data from the [NISRA data
