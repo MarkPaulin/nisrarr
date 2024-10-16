@@ -1,12 +1,4 @@
-nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
-  cache <- cachem::cache_disk(path.expand("~/.nisrarr"), max_age = 60 * 60 * 24)
-  params <- list(...)
-  key <- rlang::hash(list(method, params))
-
-  if (cache$exists(key) && !flush_cache) {
-    return(cache$get(key))
-  }
-
+nisra_data_portal_request <- function(method, params) {
   query_data <- list(
     jsonrpc = "2.0",
     method = method,
@@ -32,10 +24,24 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
     ))
   }
 
-  cache$set(key, resp)
-
   resp
 }
+
+
+nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
+  cache <- cachem::cache_disk(path.expand("~/.nisrarr"), max_age = 60 * 60 * 24)
+  params <- list(...)
+  key <- rlang::hash(list(method, params))
+
+  if (cache$exists(key) && !flush_cache) {
+    return(cache$get(key))
+  }
+
+  resp <- nisra_data_portal_request(method, params)
+  cache$set(key, resp)
+  resp
+}
+
 
 #' Read NISRA data portal dataset
 #'
