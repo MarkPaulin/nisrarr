@@ -25,7 +25,11 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
   key <- rlang::hash(list(method, params))
 
   if (cache$exists(key) && !flush_cache) {
-    return(cache$get(key))
+    resp <- cache$get(key)
+    resp_body <- resp |>
+      httr2::resp_body_json(simplifyVector = TRUE, simplifyDataFrame = FALSE)
+
+    return(resp_body)
   }
 
   resp <- nisra_data_portal_request(method, params)
@@ -183,4 +187,9 @@ nisra_search <- function(keyword = NULL,
   }
 
   coll
+}
+
+nisrarr_clear_cache <- function() {
+  cache <- cachem::cache_disk(path.expand("~/.nisrarr"))
+  cache$reset()
 }
