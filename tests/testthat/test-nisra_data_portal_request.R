@@ -25,3 +25,17 @@ vcr::use_cassette("nisra_data_portal_application_error", {
     )
   })
 })
+
+
+vcr::use_cassette("nisra_search", {
+  test_that("nisra_search returns the results", {
+    out <- nisra_search("health", flush_cache = TRUE)
+    expect_equal(
+      names(out),
+      c("dataset_code", "dataset_label", "frequency",
+        "dataset_dimensions", "updated")
+    )
+    labels <- out[["dataset_label"]]
+    expect_true(all(grepl("health", labels, ignore.case = TRUE)))
+  })
+})

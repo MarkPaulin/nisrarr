@@ -45,7 +45,7 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
     ))
   }
 
-  cache$set(key, resp_body)
+  cache$set(key, resp)
 
   resp_body
 }
