@@ -13,16 +13,7 @@ nisra_data_portal_request <- function(method, params) {
     httr2::req_user_agent("nisrarr (http://github.com/MarkPaulin/nisrarr)")
 
   resp <- req |>
-    httr2::req_perform() |>
-    httr2::resp_body_json(simplifyVector = TRUE, simplifyDataFrame = FALSE)
-
-  if ("error" %in% names(resp)) {
-    msg <- resp[["error"]][["message"]]
-    cli::cli_abort(c(
-      "Error from server!",
-      "i" = msg
-    ))
-  }
+    httr2::req_perform()
 
   resp
 }
@@ -38,8 +29,21 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
   }
 
   resp <- nisra_data_portal_request(method, params)
-  cache$set(key, resp)
-  resp
+
+  resp_body <- resp |>
+    httr2::resp_body_json(simplifyVector = TRUE, simplifyDataFrame = FALSE)
+
+  if ("error" %in% names(resp_body)) {
+    msg <- resp_body[["error"]][["message"]]
+    cli::cli_abort(c(
+      "Error from server!",
+      "i" = msg
+    ))
+  }
+
+  cache$set(key, resp_body)
+
+  resp_body
 }
 
 
