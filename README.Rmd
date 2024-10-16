@@ -42,3 +42,17 @@ head(nisra_search(keyword = "claimant"))
 ``` r
 head(nisra_load_dataset("CCMLGD"))
 ```
+
+## Help wanted / things that need done
+
+There is no error handling at the moment. If you're using this package and get an error message, please open an issue!
+
+Other things to do:
+
+- Proper documentation, especially examples and vignettes
+- Testing - need to read up on testing things that depend on HTTP requests
+- Maybe release to CRAN someday?
+
+## Inspiration
+
+This package is heavily based on [csodata](https://github.com/CSOIreland/csodata), which wraps an identical API. I also learnt a lot from reading the code for [nomisr](https://github.com/ropensci/nomisr).
