@@ -19,3 +19,5 @@ Imports:
     rlang,
     stringr,
     tibble
+Suggests: 
+    vcr (>= 0.6.0)

@@ -1,0 +1,31 @@
+http_interactions:
+- request:
+    method: head
+    uri: https://hb.opencpu.org/get
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/8.3.0 r-curl/5.2.3 crul/1.5.0
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      server: nginx/1.22.1
+      date: Wed, 16 Oct 2024 20:09:18 GMT
+      content-type: application/json
+      content-length: '280'
+      connection: keep-alive
+      access-control-allow-origin: '*'
+      access-control-allow-credentials: 'true'
+      x-powered-by: Flask
+      x-processed-time: '0'
+    body:
+      encoding: ''
+      file: no
+      string: ''
+  recorded_at: 2024-10-16 20:09:18 GMT
+  recorded_with: vcr/1.6.0, webmockr/1.0.0

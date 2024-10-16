@@ -1,0 +1,38 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://ws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22%3A%222.0%22%2C%22method%22%3A%22incorrect_method%22%2C%22params%22%3A%5B%5D%7D
+    body:
+      encoding: ''
+      string: ''
+    headers: []
+  response:
+    status:
+      status_code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials: 'true'
+      Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept,
+        subscription_key
+      Access-Control-Allow-Origin: ''
+      Cache-Control: no-cache
+      Content-Length: '92'
+      Content-Type: application/json
+      Date: Wed, 16 Oct 2024 20:26:48 GMT
+      Expires: '-1'
+      Pragma: no-cache
+      Set-Cookie:
+      - CookiePersistEnc=!tLPrW8Rr8IOG/NiXWTrXBJkpGsnh3ZaD0vuZDFLBQSozRE16zElDrPIKgSZlQ8t7XQrkjnlYPrqCB3I=;
+        path=/; Httponly; Secure
+      - TS01eb73f1=017f41f17ba854f1155085c7acea50dddd27c272da62a1f4ef780961e050cc7bca2ed3baf3e1556c814d35c5f30508ba0e5f458c870c0244849092a4c13f2a473843a54f6d;
+        Path=/
+      Strict-Transport-Security: max-age=31536000; includeSubDomains
+      Vary: Origin
+      X-Content-Type-Options: nosniff
+      X-Xss-Protection: 1; mode=block
+    body:
+      encoding: ''
+      file: no
+      string: '{"jsonrpc":"2.0","error":{"code":-32601,"message":"Method not found","data":null},"id":null}'
+  recorded_at: 2024-10-16 20:26:49 GMT
+  recorded_with: vcr/1.6.0, webmockr/1.0.0
