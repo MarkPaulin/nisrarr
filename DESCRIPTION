@@ -4,6 +4,8 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Mark", "Paulin", email = "mark.paulin@nisra.gov.uk", role = c("aut", "cre"))
 Description: Download data from the NISRA data portal, accessed at <http://data.nisra.gov.uk>.
+The Northern Ireland Statistics and Research Agency (NISRA) is a government agency and the
+principal source of official statistics and social research on Northern Ireland.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

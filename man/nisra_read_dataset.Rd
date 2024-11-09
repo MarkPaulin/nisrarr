@@ -12,8 +12,15 @@ nisra_read_dataset(dataset_code, flush_cache = FALSE)
 \item{flush_cache}{Ignore cached values}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble::tibble()}} with the dataset.
+A tibble with the requested dataset. If \code{dataset_code}
+is not found, an error will be thrown.
 }
 \description{
-Read NISRA data portal dataset
+Fetch a dataset from the NISRA data portal using the dataset code. You
+can search for a dataset using \code{\link[=nisra_search]{nisra_search()}}.
+}
+\examples{
+\dontrun{
+claimant_count_lgd <- nisra_read_dataset("CCMLGD")
+}
 }

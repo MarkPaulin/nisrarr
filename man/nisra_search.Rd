@@ -22,13 +22,25 @@ nisra_search(
 
 \item{variables}{Variables to search for in datasets}
 
-\item{datefrom}{Date to search from}
+\item{datefrom}{Date to search from. Search is limited to datasets updated in
+the last three months if not specified.}
 
 \item{flush_cache}{Ignore cached values}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble::tibble()}} of dataset information matching the search terms
+A tibble of dataset information matching the search
+terms. This will include dataset codes, label, frequency, dimensions,
+and dimensions.
 }
 \description{
-Search for a NISRA dataset
+Search the NISRA data portal for a dataset. You can search dataset titles
+either for a keyword or with a regular expression, using a dataset code, or
+by variables that appear in dataset. You can also specify how recently the
+dataset must have been updated.
+}
+\examples{
+\dontrun{
+population_datasets <- nisra_search(keyword = "population")
+age_datasets <- nisra_search(variables = "age")
+}
 }

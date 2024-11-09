@@ -20,7 +20,7 @@ nisra_data_portal_request <- function(method, params) {
 
 
 nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
-  cache <- cachem::cache_disk(path.expand("~/.nisrarr"), max_age = 60 * 60 * 24)
+  cache <- cachem::cache_disk(tools::R_user_dir("nisrarr", "cache"), max_age = 60 * 60 * 24)
   params <- list(...)
   key <- rlang::hash(list(method, params))
 
@@ -59,12 +59,13 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
 #' @param dataset_code Dataset code
 #' @param flush_cache Ignore cached values
 #'
-#' @return A [tibble::tibble()] with the dataset.
+#' @return A tibble with the requested dataset. If `dataset_code`
+#' is not found, an error will be thrown.
 #' @export
 #'
-#' @example
+#' @examples
 #' \dontrun{
-#'
+#' claimant_count_lgd <- nisra_read_dataset("CCMLGD")
 #' }
 nisra_read_dataset <- function(dataset_code, flush_cache = FALSE) {
   response <- nisra_data_portal(
@@ -169,8 +170,16 @@ nisra_read_collection <- function(datefrom = NULL, flush_cache = FALSE) {
 #' the last three months if not specified.
 #' @param flush_cache Ignore cached values
 #'
-#' @return A [tibble::tibble()] of dataset information matching the search terms
+#' @return A tibble of dataset information matching the search
+#' terms. This will include dataset codes, label, frequency, dimensions,
+#' and dimensions.
 #' @export
+#' 
+#' @examples
+#' \dontrun{
+#' population_datasets <- nisra_search(keyword = "population")
+#' age_datasets <- nisra_search(variables = "age")
+#' }
 nisra_search <- function(keyword = NULL,
                          regex = NULL,
                          dataset_code = NULL,
@@ -209,6 +218,6 @@ nisra_search <- function(keyword = NULL,
 }
 
 nisrarr_clear_cache <- function() {
-  cache <- cachem::cache_disk(path.expand("~/.nisrarr"))
+  cache <- cachem::cache_disk(tools::R_user_dir("nisrarr", "cache"))
   cache$reset()
 }
