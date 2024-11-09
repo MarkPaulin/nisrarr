@@ -41,7 +41,7 @@ head(nisra_search(keyword = "claimant"))
 ```
 
 ``` r
-head(nisra_load_dataset("CCMLGD"))
+head(nisra_read_dataset("CCMLGD"))
 ```
 
 ## Help wanted / things that need done
