@@ -1,0 +1,38 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://ws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22%3A%222.0%22%2C%22method%22%3A%22PXStat.Data.Cube_API.ReadDataset%22%2C%22params%22%3A%7B%22class%22%3A%22query%22%2C%22id%22%3A%5B%5D%2C%22dimension%22%3A%7B%7D%2C%22extension%22%3A%7B%22pivot%22%3Anull%2C%22codes%22%3Afalse%2C%22language%22%3A%7B%22code%22%3A%22en%22%7D%2C%22format%22%3A%7B%22type%22%3A%22CSV%22%2C%22version%22%3A%221.0%22%7D%2C%22matrix%22%3A%22notacode%22%7D%2C%22version%22%3A%222.0%22%7D%7D
+    body:
+      encoding: ''
+      string: ''
+    headers: []
+  response:
+    status:
+      status_code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials: 'true'
+      Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept,
+        subscription_key
+      Access-Control-Allow-Origin: ''
+      Cache-Control: no-cache
+      Content-Length: '41'
+      Content-Type: application/json
+      Date: Sat, 09 Nov 2024 13:40:01 GMT
+      Expires: '-1'
+      Pragma: no-cache
+      Set-Cookie:
+      - CookiePersistEnc=!wvkOXdWFn7QY0xYR4T/5iOWzKagdVYD792xegbPq6ortkUT7bJITMFsZh9bG/IekSuysTAQWccInxjA=;
+        path=/; Httponly; Secure
+      - TS01eb73f1=017f41f17b58efd00c41bc83fa8324a10ae5146686294203ed11b98b8a159a89e967c6598c3e33de993082520e1319c5ae50a86b13f4c455f392e7e6f5e24f19bd751fd809;
+        Path=/
+      Strict-Transport-Security: max-age=31536000; includeSubDomains
+      Vary: Origin
+      X-Content-Type-Options: nosniff
+      X-Xss-Protection: 1; mode=block
+    body:
+      encoding: ''
+      file: no
+      string: '{"jsonrpc":"2.0","result":null,"id":null}'
+  recorded_at: 2024-11-09 13:40:01 GMT
+  recorded_with: vcr/1.6.0, webmockr/1.0.0

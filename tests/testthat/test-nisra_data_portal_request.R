@@ -82,3 +82,12 @@ vcr::use_cassette("nisra_read_dataset", {
     )
   })
 })
+
+vcr::use_cassette("missing_dataset", {
+  test_that("message is shown if dataset does not exist", {
+    expect_error(
+      nisra_read_dataset("notacode", flush_cache = TRUE),
+      "Unable to find dataset: notacode"
+    )
+  })
+})
