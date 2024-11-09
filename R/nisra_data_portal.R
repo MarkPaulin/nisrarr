@@ -165,7 +165,7 @@ nisra_read_collection <- function(datefrom = NULL, flush_cache = FALSE) {
 #' @param regex Regular expression for searching dataset titles
 #' @param dataset_code Dataset to find
 #' @param variables Variables to search for in datasets
-#' @param datefrom Date to search from. Search is limited to datasets updated in 
+#' @param datefrom Date to search from. Search is limited to datasets updated in
 #' the last three months if not specified.
 #' @param flush_cache Ignore cached values
 #'

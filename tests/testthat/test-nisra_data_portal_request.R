@@ -75,7 +75,10 @@ vcr::use_cassette("nisra_read_dataset", {
     expect_s3_class(df, "tbl_df")
     expect_identical(
       colnames(df),
-      c("Statistic Label", "Month", "Local Government District", "UNIT", "VALUE")
+      c(
+        "Statistic Label", "Month", "Local Government District", "UNIT",
+        "VALUE"
+      )
     )
   })
 })
