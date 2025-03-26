@@ -21,7 +21,6 @@ Imports:
     jsonlite,
     lubridate,
     purrr,
-    readr,
     rjstat,
     rlang,
     stringr,

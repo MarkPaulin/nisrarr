@@ -1,6 +1,9 @@
 nisra_data_portal_request <- function(method, ...) {
+  path_order <- c(
+    "datefrom", "matrix", "format_type", "format_version", "language"
+  )
   params <- rlang::list2(...)
-  params <- purrr::list_c(params[c("datefrom", "matrix", "format_type", "format_version", "language")])
+  params <- purrr::list_c(params[path_order])
 
   req <- httr2::request("https://ws-data.nisra.gov.uk/public/api.restful") |>
     httr2::req_user_agent("nisrarr (http://github.com/MarkPaulin/nisrarr)") |>
@@ -19,7 +22,9 @@ nisra_data_portal_request <- function(method, ...) {
 
 
 nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
-  cache <- cachem::cache_disk(tools::R_user_dir("nisrarr", "cache"), max_age = 60 * 60 * 24)
+  cache <- cachem::cache_disk(tools::R_user_dir("nisrarr", "cache"),
+    max_age = 60 * 60 * 24
+  )
   params <- list(...)
   key <- rlang::hash(list(method, params))
 
