@@ -1,12 +1,15 @@
 Package: nisrarr
-Title: Download data from the NISRA data portal
+Title: Download Data from the NISRA Data Portal
 Version: 0.0.0.9000
 Authors@R: 
     person("Mark", "Paulin", email = "mark.paulin@nisra.gov.uk", role = c("aut", "cre"))
-Description: Download data from the NISRA data portal, accessed at <http://data.nisra.gov.uk>.
-    The Northern Ireland Statistics and Research Agency (NISRA) is a government agency and the
-    principal source of official statistics and social research on Northern Ireland.
+Description: Download data from the Northern Ireland Statistics and Research 
+    Agency (NISRA) data portal, accessed at <https://data.nisra.gov.uk>. NISRA 
+    is a government agency and the principal source of official statistics and 
+    social research on Northern Ireland.
 License: MIT + file LICENSE
+URL: https://github.com/MarkPaulin/nisrarr
+BugReports: https://github.com/MarkPaulin/nisrarr/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
