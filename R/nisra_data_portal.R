@@ -1,16 +1,15 @@
-nisra_data_portal_request <- function(method, params) {
-  query_data <- list(
-    jsonrpc = "2.0",
-    method = method,
-    params = params
-  )
+nisra_data_portal_request <- function(method, ...) {
+  params <- rlang::list2(...)
+  params <- purrr::list_c(params[c("datefrom", "matrix", "format_type", "format_version", "language")])
 
-  query_json <- jsonlite::toJSON(query_data, auto_unbox = TRUE)
-
-  req <- httr2::request("https://ws-data.nisra.gov.uk/public/api.jsonrpc") |>
+  req <- httr2::request("https://ws-data.nisra.gov.uk/public/api.restful") |>
+    httr2::req_user_agent("nisrarr (http://github.com/MarkPaulin/nisrarr)") |>
     httr2::req_throttle(10 / 60) |>
-    httr2::req_url_query(data = query_json) |>
-    httr2::req_user_agent("nisrarr (http://github.com/MarkPaulin/nisrarr)")
+    httr2::req_url_path_append(method)
+
+  if (!is.null(params)) {
+    req <- httr2::req_url_path_append(req, params)
+  }
 
   resp <- req |>
     httr2::req_perform()
@@ -27,18 +26,21 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
   if (cache$exists(key) && !flush_cache) {
     resp <- cache$get(key)
     resp_body <- resp |>
-      httr2::resp_body_json(simplifyVector = TRUE, simplifyDataFrame = FALSE)
+      httr2::resp_body_string()
 
     return(resp_body)
   }
 
-  resp <- nisra_data_portal_request(method, params)
+  resp <- nisra_data_portal_request(method, ...)
 
   resp_body <- resp |>
-    httr2::resp_body_json(simplifyVector = TRUE, simplifyDataFrame = FALSE)
+    httr2::resp_body_string()
 
-  if ("error" %in% names(resp_body)) {
-    msg <- resp_body[["error"]][["message"]]
+  if (stringr::str_detect(resp$headers$`Content-Type`, "text.html")) {
+    msg <- xml2::read_html(resp_body) |>
+      xml2::xml_find_first("body") |>
+      xml2::xml_text()
+
     cli::cli_abort(c(
       "Error from server!",
       "i" = msg
@@ -69,34 +71,15 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
 #' }
 nisra_read_dataset <- function(dataset_code, flush_cache = FALSE) {
   response <- nisra_data_portal(
-    "PXStat.Data.Cube_API.ReadDataset",
-    class = "query",
-    id = list(),
-    dimension = c(),
-    extension = list(
-      pivot = NA,
-      codes = FALSE,
-      language = list(
-        code = "en"
-      ),
-      format = list(
-        type = "CSV",
-        version = "1.0"
-      ),
-      matrix = dataset_code
-    ),
-    version = "2.0",
+    "PxStat.Data.Cube_API.ReadDataset",
+    matrix = dataset_code,
+    format_type = "JSON-stat",
+    format_version = "2.0",
+    language = "en",
     flush_cache = flush_cache
   )
 
-  if (is.null(response[["result"]])) {
-    cli::cli_abort(c(
-      "Unable to find dataset: {dataset_code}",
-      "i" = "You can check the code for the dataset using {.fn nisra_search}"
-    ))
-  }
-
-  readr::read_csv(response[["result"]], show_col_types = FALSE)
+  tibble::as_tibble(rjstat::fromJSONstat(response))
 }
 
 
@@ -112,16 +95,17 @@ nisra_read_collection <- function(datefrom = NULL, flush_cache = FALSE) {
     datefrom = datefrom,
     flush_cache = flush_cache
   )
+  resp <- jsonlite::fromJSON(resp, simplifyDataFrame = FALSE)
 
-  codes <- vapply(resp$result$link$item, \(x) {
+  codes <- vapply(resp$link$item, \(x) {
     x[["extension"]][["matrix"]]
   }, character(1))
 
-  labels <- vapply(resp$result$link$item, \(x) {
+  labels <- vapply(resp$link$item, \(x) {
     x[["label"]]
   }, character(1))
 
-  frequencies <- vapply(resp$result$link$item, \(x) {
+  frequencies <- vapply(resp$link$item, \(x) {
     dims <- x[["dimension"]]
     dplyr::coalesce(
       dims[["TLIST(A1)"]][["label"]],
@@ -133,14 +117,14 @@ nisra_read_collection <- function(datefrom = NULL, flush_cache = FALSE) {
     )
   }, character(1))
 
-  dimensions <- lapply(resp$result$link$item, \(x) {
+  dimensions <- lapply(resp$link$item, \(x) {
     dims <- x[["dimension"]]
     vapply(dims, \(dim) {
       dim[["label"]]
     }, character(1))
   })
 
-  updated_dates <- lubridate::ymd_hms(vapply(resp$result$link$item, \(x) {
+  updated_dates <- lubridate::ymd_hms(vapply(resp$link$item, \(x) {
     x[["updated"]]
   }, character(1)))
 
@@ -174,7 +158,7 @@ nisra_read_collection <- function(datefrom = NULL, flush_cache = FALSE) {
 #' terms. This will include dataset codes, label, frequency, dimensions,
 #' and dimensions.
 #' @export
-#' 
+#'
 #' @examples
 #' \dontrun{
 #' population_datasets <- nisra_search(keyword = "population")

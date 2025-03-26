@@ -1,38 +1,36 @@
 http_interactions:
 - request:
     method: get
-    uri: https://ws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22%3A%222.0%22%2C%22method%22%3A%22test_method%22%2C%22params%22%3A%7B%22made_up_parameter%22%3A%22test%22%7D%7D
+    uri: https://ws-data.nisra.gov.uk/public/api.restful/test_method
     body:
       encoding: ''
       string: ''
     headers: []
   response:
     status:
-      status_code: 200
-      message: OK
+      status_code: 400
+      message: Bad Request
     headers:
       Access-Control-Allow-Credentials: 'true'
       Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept,
         subscription_key
       Access-Control-Allow-Origin: ''
       Cache-Control: no-cache
-      Content-Length: '92'
-      Content-Type: application/json
-      Date: Wed, 16 Oct 2024 20:09:32 GMT
-      Expires: '-1'
-      Pragma: no-cache
+      Content-Type: charset=utf-8
+      Date: Wed, 26 Mar 2025 20:06:36 GMT
       Set-Cookie:
-      - CookiePersistEnc=!ZSAkQO2pk22Ar4uXWTrXBJkpGsnh3S8NfzdpBlCWXz3pO4+W2Sz2+6GWMUbQpCsOBvUpHO94SOdN0Tk=;
+      - CookiePersistEnc=!JkdWxA9BDOJ2F6HqpCSYHNan4Wr+jz8JGPZilwCn+iVualiSo596FAsMVjhJR056Ns5Yxf4Uj5ZdFaA=;
         path=/; Httponly; Secure
-      - TS01eb73f1=017f41f17b497c592499d96bb71ef1ab78f881317deac46fd0ff4b72d5ef2239f9bb68d0864cec142abc1215359d7d708e530c3e1d8414f36c7583535691851c883ac76664;
-        Path=/
-      Strict-Transport-Security: max-age=31536000; includeSubDomains
+      - TS01eb73f1=017f41f17bb98935955227cd5e6f59f31f8893305716edf22e84c079ebd4bd4ad706540ccbfe826f6402b501b3d8cc6fb607c3adf6d524edbd42e5d4dccca3a5b4cc6f27d9;
+        Path=/;
+      Strict-Transport-Security: max-age=63072000; includeSubDomains
+      Transfer-Encoding: chunked
       Vary: Origin
       X-Content-Type-Options: nosniff
-      X-Xss-Protection: 1; mode=block
+      X-Frame-Options: deny
     body:
       encoding: ''
       file: no
-      string: '{"jsonrpc":"2.0","error":{"code":-32601,"message":"Method not found","data":null},"id":null}'
-  recorded_at: 2024-10-16 20:09:32 GMT
+      string: RESTful method not found
+  recorded_at: 2025-03-26 20:06:36 GMT
   recorded_with: vcr/1.6.0, webmockr/1.0.0

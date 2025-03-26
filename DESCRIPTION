@@ -20,10 +20,13 @@ Imports:
     httr2,
     jsonlite,
     lubridate,
+    purrr,
     readr,
+    rjstat,
     rlang,
     stringr,
-    tibble
+    tibble,
+    xml2
 Suggests: 
     testthat (>= 3.0.0),
     vcr (>= 0.6.0)
