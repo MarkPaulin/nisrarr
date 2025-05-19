@@ -20,11 +20,13 @@ Imports:
     httr2,
     jsonlite,
     lubridate,
+    pillar,
     purrr,
     rjstat,
-    rlang,
+    rlang (>= 1.1.0),
     stringr,
     tibble,
+    vctrs,
     xml2
 Suggests: 
     testthat (>= 3.0.0),

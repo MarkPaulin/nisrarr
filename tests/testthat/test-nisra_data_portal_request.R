@@ -51,11 +51,16 @@ vcr::use_cassette("nisra_read_dataset", {
     df <- nisra_read_dataset("CCMLGD", flush_cache = TRUE)
 
     expect_s3_class(df, "tbl_df")
+    expect_s3_class(df, "nisra_df")
     expect_identical(
       colnames(df),
       c(
         "Statistic", "Month", "Local Government District", "value"
       )
+    )
+    expect_equal(
+      get_metadata(df, "label"),
+      "Claimant Count Monthly Data"
     )
   })
 })

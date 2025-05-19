@@ -84,7 +84,13 @@ nisra_read_dataset <- function(dataset_code, flush_cache = FALSE) {
     flush_cache = flush_cache
   )
 
-  tibble::as_tibble(rjstat::fromJSONstat(response))
+  resp_list <- jsonlite::fromJSON(response)
+  meta <- c(resp_list[["extension"]], note = resp_list[["note"]], label = resp_list[["label"]])
+
+  nisra_df(
+    rjstat::fromJSONstat(response),
+    meta = meta
+  )
 }
 
 
