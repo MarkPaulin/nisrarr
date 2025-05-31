@@ -9,7 +9,6 @@
 #'
 #' @returns A `nisra_df`, a [tbl_df][tibble::tbl_df-class] with an additional
 #' `"nisra_df"` class attribute
-#' @export
 nisra_df <- function(..., meta = NULL) {
   data <- vctrs::df_list(...)
   new_nisra_df(data, meta = meta, class = c("tbl_df", "tbl"))
