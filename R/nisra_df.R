@@ -65,6 +65,7 @@ print.nisra_meta <- function(x, ...) {
       "Label: {x$label}",
       "Subject: {x$subject$value}",
       "Type: {stat_type}",
+      "Updated: {x$updated}",
       "Note: {note}",
       "Contact: {x$contact$name}",
       "Contact email: {x$contact$email}",

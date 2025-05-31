@@ -10,6 +10,7 @@
 #' * note - any notes describing the data
 #' * official - a flag for official statistics
 #' * subject - a code and label for the subject
+#' * updated - date
 #'
 #' @param x A [nisra_df] object created using [nisra_read_dataset()]
 #' @param field The metadata field to read. See details for a list of fields.

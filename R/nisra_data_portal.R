@@ -46,6 +46,7 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
   resp_body <- resp |>
     httr2::resp_body_string()
 
+  # this doesn't feel right but can't find the error message anywhere else
   if (stringr::str_detect(resp$headers$`Content-Type`, "text.html")) {
     msg <- xml2::read_html(resp_body) |>
       xml2::xml_find_first("body") |>
@@ -93,7 +94,8 @@ nisra_read_dataset <- function(dataset_code, flush_cache = FALSE) {
   meta <- c(
     resp_list[["extension"]],
     note = resp_list[["note"]],
-    label = resp_list[["label"]]
+    label = resp_list[["label"]],
+    updated = resp_list[["updated"]]
   )
 
   nisra_df(

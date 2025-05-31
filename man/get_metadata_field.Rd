@@ -30,5 +30,6 @@ Every dataset should have the following metadata fields:
 \item note - any notes describing the data
 \item official - a flag for official statistics
 \item subject - a code and label for the subject
+\item updated - date
 }
 }

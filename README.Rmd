@@ -33,26 +33,34 @@ pak::pak("MarkPaulin/nisrarr")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+`nisra_search()` lets you search for a dataset using keywords or variable names,
+and shows information like the last time the dataset was updated:
 
-``` r
+```{r search}
 library(nisrarr)
 head(nisra_search(keyword = "claimant"))
 ```
 
-``` r
-head(nisra_read_dataset("CCMLGD"))
+`nisra_read_data()` can be used to download a dataset from the NISRA data 
+portal as a data-frame:
+
+```{r data}
+claimant_count <- nisra_read_dataset("CCMLGD")
+head(claimant_count)
+```
+
+The data portal also provides various types of metadata, which can be accessed 
+using `get_metadata()` or `get_metadata_field()`:
+
+```{r metadata}
+get_metadata(claimant_count)
+
+get_metadata_field(claimant_count, "contact")
 ```
 
 ## Help wanted / things that need done
 
 There is no error handling at the moment. If you're using this package and get an error message, please open an issue!
-
-Other things to do:
-
-- Proper documentation, especially examples and vignettes
-- Testing - need to read up on testing things that depend on HTTP requests
-- Maybe release to CRAN someday?
 
 ## Inspiration
 
