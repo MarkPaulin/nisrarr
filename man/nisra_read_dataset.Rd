@@ -20,7 +20,5 @@ Fetch a dataset from the NISRA data portal using the dataset code. You
 can search for a dataset using \code{\link[=nisra_search]{nisra_search()}}.
 }
 \examples{
-\dontrun{
 claimant_count_lgd <- nisra_read_dataset("CCMLGD")
-}
 }

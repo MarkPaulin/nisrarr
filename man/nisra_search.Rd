@@ -39,8 +39,6 @@ by variables that appear in dataset. You can also specify how recently the
 dataset must have been updated.
 }
 \examples{
-\dontrun{
 population_datasets <- nisra_search(keyword = "population")
 age_datasets <- nisra_search(variables = "age")
-}
 }

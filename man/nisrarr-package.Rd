@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Mark Paulin \email{mark.paulin@nisra.gov.uk}
+\strong{Maintainer}: Mark Paulin \email{paulin.mark@googlemail.com} [copyright holder]
 
 }
 \keyword{internal}
