@@ -1,6 +1,6 @@
 Package: nisrarr
 Title: Download Data from the NISRA Data Portal
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Mark", "Paulin", email = "paulin.mark@googlemail.com", role = c("aut", "cre", "cph"))
 Description: Download data from the Northern Ireland Statistics and Research 
