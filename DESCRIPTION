@@ -17,6 +17,7 @@ Imports:
     cachem,
     cli,
     dplyr,
+    glue,
     httr2,
     jsonlite,
     lubridate,

@@ -1,13 +1,17 @@
 nisra_data_portal_request <- function(method, ...) {
   path_order <- c(
-    "datefrom", "matrix", "format_type", "format_version", "language"
+    "datefrom",
+    "matrix",
+    "format_type",
+    "format_version",
+    "language"
   )
   params <- rlang::list2(...)
   params <- purrr::list_c(params[path_order])
 
   req <- httr2::request("https://ws-data.nisra.gov.uk/public/api.restful") |>
     httr2::req_user_agent("nisrarr (http://github.com/MarkPaulin/nisrarr)") |>
-    httr2::req_throttle(10 / 60) |>
+    httr2::req_throttle(30 / 60) |>
     httr2::req_url_path_append(method)
 
   if (!is.null(params)) {
@@ -22,7 +26,8 @@ nisra_data_portal_request <- function(method, ...) {
 
 
 nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
-  cache <- cachem::cache_disk(tools::R_user_dir("nisrarr", "cache"),
+  cache <- cachem::cache_disk(
+    tools::R_user_dir("nisrarr", "cache"),
     max_age = 60 * 60 * 24
   )
   params <- list(...)
@@ -85,7 +90,11 @@ nisra_read_dataset <- function(dataset_code, flush_cache = FALSE) {
   )
 
   resp_list <- jsonlite::fromJSON(response)
-  meta <- c(resp_list[["extension"]], note = resp_list[["note"]], label = resp_list[["label"]])
+  meta <- c(
+    resp_list[["extension"]],
+    note = resp_list[["note"]],
+    label = resp_list[["label"]]
+  )
 
   nisra_df(
     rjstat::fromJSONstat(response),
@@ -108,36 +117,56 @@ nisra_read_collection <- function(datefrom = NULL, flush_cache = FALSE) {
   )
   resp <- jsonlite::fromJSON(resp, simplifyDataFrame = FALSE)
 
-  codes <- vapply(resp$link$item, \(x) {
-    x[["extension"]][["matrix"]]
-  }, character(1))
+  codes <- vapply(
+    resp$link$item,
+    \(x) {
+      x[["extension"]][["matrix"]]
+    },
+    character(1)
+  )
 
-  labels <- vapply(resp$link$item, \(x) {
-    x[["label"]]
-  }, character(1))
+  labels <- vapply(
+    resp$link$item,
+    \(x) {
+      x[["label"]]
+    },
+    character(1)
+  )
 
-  frequencies <- vapply(resp$link$item, \(x) {
-    dims <- x[["dimension"]]
-    dplyr::coalesce(
-      dims[["TLIST(A1)"]][["label"]],
-      dims[["TLIST(H1)"]][["label"]],
-      dims[["TLIST(Q1)"]][["label"]],
-      dims[["TLIST(M1)"]][["label"]],
-      dims[["TLIST(W1)"]][["label"]],
-      dims[["TLIST(D1)"]][["label"]]
-    )
-  }, character(1))
+  frequencies <- vapply(
+    resp$link$item,
+    \(x) {
+      dims <- x[["dimension"]]
+      dplyr::coalesce(
+        dims[["TLIST(A1)"]][["label"]],
+        dims[["TLIST(H1)"]][["label"]],
+        dims[["TLIST(Q1)"]][["label"]],
+        dims[["TLIST(M1)"]][["label"]],
+        dims[["TLIST(W1)"]][["label"]],
+        dims[["TLIST(D1)"]][["label"]]
+      )
+    },
+    character(1)
+  )
 
   dimensions <- lapply(resp$link$item, \(x) {
     dims <- x[["dimension"]]
-    vapply(dims, \(dim) {
-      dim[["label"]]
-    }, character(1))
+    vapply(
+      dims,
+      \(dim) {
+        dim[["label"]]
+      },
+      character(1)
+    )
   })
 
-  updated_dates <- lubridate::ymd_hms(vapply(resp$link$item, \(x) {
-    x[["updated"]]
-  }, character(1)))
+  updated_dates <- lubridate::ymd_hms(vapply(
+    resp$link$item,
+    \(x) {
+      x[["updated"]]
+    },
+    character(1)
+  ))
 
   tibble::tibble(
     dataset_code = codes,
@@ -147,7 +176,6 @@ nisra_read_collection <- function(datefrom = NULL, flush_cache = FALSE) {
     updated = updated_dates
   )
 }
-
 
 
 #' Search for a NISRA dataset
@@ -175,12 +203,14 @@ nisra_read_collection <- function(datefrom = NULL, flush_cache = FALSE) {
 #' population_datasets <- nisra_search(keyword = "population")
 #' age_datasets <- nisra_search(variables = "age")
 #' }
-nisra_search <- function(keyword = NULL,
-                         regex = NULL,
-                         dataset_code = NULL,
-                         variables = NULL,
-                         datefrom = NULL,
-                         flush_cache = FALSE) {
+nisra_search <- function(
+  keyword = NULL,
+  regex = NULL,
+  dataset_code = NULL,
+  variables = NULL,
+  datefrom = NULL,
+  flush_cache = FALSE
+) {
   coll <- nisra_read_collection(datefrom = datefrom, flush_cache = flush_cache)
   if (!missing(keyword)) {
     pattern <- stringr::fixed(keyword, ignore_case = TRUE)
@@ -197,14 +227,22 @@ nisra_search <- function(keyword = NULL,
   }
 
   if (!missing(variables)) {
-    found <- vapply(coll[["dataset_dimensions"]], \(x) {
-      all(vapply(variables, \(y) {
-        any(stringr::str_detect(
-          stringr::str_to_lower(x),
-          stringr::coll(y, ignore_case = TRUE)
+    found <- vapply(
+      coll[["dataset_dimensions"]],
+      \(x) {
+        all(vapply(
+          variables,
+          \(y) {
+            any(stringr::str_detect(
+              stringr::str_to_lower(x),
+              stringr::coll(y, ignore_case = TRUE)
+            ))
+          },
+          logical(1)
         ))
-      }, logical(1)))
-    }, logical(1))
+      },
+      logical(1)
+    )
 
     coll <- coll[found, ]
   }
