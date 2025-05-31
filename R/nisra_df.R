@@ -21,18 +21,18 @@ nisra_df <- function(..., meta = NULL) {
 #'
 #' @return Metadata if the field is found, otherwise `NULL`
 #' @export
-get_metadata <- function(x, field) {
-  UseMethod("get_metadata")
+get_metadata_field <- function(x, field) {
+  UseMethod("get_metadata_field")
 }
 
 #' @exportS3Method
-get_metadata.default <- function(x, field) {
+get_metadata_field.default <- function(x, field) {
   x_type <- obj_type_friendly(x)
-  stop(paste("`get_metadata` not implemented for", x_type))
+  stop(paste("`get_metadata_field` not implemented for", x_type))
 }
 
 #' @exportS3Method
-get_metadata.nisra_df <- function(x, field) {
+get_metadata_field.nisra_df <- function(x, field) {
   attr(x, "meta", exact = TRUE)[[field]]
 }
 
@@ -44,7 +44,7 @@ tbl_format_footer.nisra_df <- function(x, setup, ...) {
     return(default_footer)
   }
 
-  source_info <- paste0("Source: ", get_metadata(x, "label"))
+  source_info <- paste0("Source: ", get_metadata_field(x, "label"))
   source_footer <- pillar::style_subtle(paste0("# ", source_info))
   c(default_footer, source_footer)
 }
