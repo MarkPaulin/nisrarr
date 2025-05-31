@@ -77,9 +77,7 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' claimant_count_lgd <- nisra_read_dataset("CCMLGD")
-#' }
 nisra_read_dataset <- function(dataset_code, flush_cache = FALSE) {
   response <- nisra_data_portal(
     "PxStat.Data.Cube_API.ReadDataset",
@@ -201,10 +199,8 @@ nisra_read_collection <- function(datefrom = NULL, flush_cache = FALSE) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' population_datasets <- nisra_search(keyword = "population")
 #' age_datasets <- nisra_search(variables = "age")
-#' }
 nisra_search <- function(
   keyword = NULL,
   regex = NULL,

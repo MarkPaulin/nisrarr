@@ -19,11 +19,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' mye <- nisra_read_dataset("MYE01T09")
 #' get_metadata(mye)
 #' get_metadata_field(mye, "contact")
-#' }
 get_metadata_field <- function(x, field) {
   UseMethod("get_metadata_field")
 }

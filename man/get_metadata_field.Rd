@@ -33,3 +33,10 @@ Every dataset should have the following metadata fields:
 \item updated - date
 }
 }
+\examples{
+\dontrun{
+mye <- nisra_read_dataset("MYE01T09")
+get_metadata(mye)
+get_metadata_field(mye, "contact")
+}
+}
