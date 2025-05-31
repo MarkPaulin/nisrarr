@@ -20,8 +20,11 @@ vcr::use_cassette("nisra_search", {
     expect_equal(
       names(out),
       c(
-        "dataset_code", "dataset_label", "frequency",
-        "dataset_dimensions", "updated"
+        "dataset_code",
+        "dataset_label",
+        "frequency",
+        "dataset_dimensions",
+        "updated"
       )
     )
     labels <- out[["dataset_label"]]
@@ -39,9 +42,13 @@ vcr::use_cassette("nisra_search_2", {
 
     data_dims <- out$dataset_dimensions
     expect_true(
-      all(vapply(data_dims, \(x) {
-        any(stringr::str_detect(x, stringr::fixed("age", ignore_case = TRUE)))
-      }, logical(1)))
+      all(vapply(
+        data_dims,
+        \(x) {
+          any(stringr::str_detect(x, stringr::fixed("age", ignore_case = TRUE)))
+        },
+        logical(1)
+      ))
     )
   })
 })
@@ -51,11 +58,19 @@ vcr::use_cassette("nisra_read_dataset", {
     df <- nisra_read_dataset("CCMLGD", flush_cache = TRUE)
 
     expect_s3_class(df, "tbl_df")
+    expect_s3_class(df, "nisra_df")
     expect_identical(
       colnames(df),
       c(
-        "Statistic", "Month", "Local Government District", "value"
+        "Statistic",
+        "Month",
+        "Local Government District",
+        "value"
       )
+    )
+    expect_equal(
+      get_metadata_field(df, "label"),
+      "Claimant Count Monthly Data"
     )
   })
 })
