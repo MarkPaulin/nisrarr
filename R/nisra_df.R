@@ -9,12 +9,18 @@
 #'
 #' @returns A `nisra_df`, a [tbl_df][tibble::tbl_df-class] with an additional
 #' `"nisra_df"` class attribute
-nisra_df <- function(..., meta = NULL) {
+nisra_df <- function(..., meta = list()) {
   data <- vctrs::df_list(...)
   new_nisra_df(data, meta = meta, class = c("tbl_df", "tbl"))
 }
 
-new_nisra_df <- function(x = list(), n = NULL, meta = NULL, ..., class = NULL) {
+new_nisra_df <- function(
+  x = list(),
+  n = NULL,
+  meta = list(),
+  ...,
+  class = NULL
+) {
   out <- vctrs::new_data_frame(x, n = n, ..., class = c("nisra_df", class))
   attr(out, "meta") <- new_nisra_meta(meta)
   out
@@ -40,15 +46,17 @@ new_nisra_meta <- function(x = list()) {
   )
 }
 
+official_stat_type <- function(official, experimental) {
+  dplyr::case_when(
+    official & !experimental ~ "Official statistics",
+    official & experimental ~ "Official statistics in development",
+    .default = "Not official statistics"
+  )
+}
+
 #' @exportS3Method
 print.nisra_meta <- function(x, ...) {
-  stat_type <- if (x$official && !x$experimental) {
-    "Official statistics"
-  } else if (x$official && x$experimental) {
-    "Official statistics in development"
-  } else {
-    "Not official statistics"
-  }
+  stat_type <- official_stat_type(x$official, x$experimental)
 
   note <- x$note
   if (nchar(note) > 100) {

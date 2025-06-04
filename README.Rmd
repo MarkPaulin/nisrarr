@@ -24,7 +24,13 @@ knitr::opts_chunk$set(
 
 ## Installation
 
-You can install the development version of nisrarr from [GitHub](https://github.com/) with:
+Install nisrarr from CRAN with:
+
+``` r
+install.packages("nisrarr")
+```
+
+Alternatively, you can install the development version of nisrarr from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
@@ -60,7 +66,7 @@ get_metadata_field(claimant_count, "contact")
 
 ## Help wanted / things that need done
 
-There is no error handling at the moment. If you're using this package and get an error message, please open an issue!
+There is minimal error handling at the moment. If you're using this package and get an error message, please open an issue!
 
 ## Inspiration
 
