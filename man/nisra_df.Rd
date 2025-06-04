@@ -4,7 +4,7 @@
 \alias{nisra_df}
 \title{Create a nisra_df object}
 \usage{
-nisra_df(..., meta = NULL)
+nisra_df(..., meta = list())
 }
 \arguments{
 \item{...}{named arguments to convert to columns, or an existing data-frame,
