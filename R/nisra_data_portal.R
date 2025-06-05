@@ -33,9 +33,9 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
   params <- list(...)
   key <- rlang::hash(list(method, params))
 
-  if (cache$exists(key) && !flush_cache) {
-    resp <- cache$get(key)
-    resp_body <- resp |>
+  cached_resp <- cache$get(key)
+  if (!cachem::is.key_missing(cached_resp) && !flush_cache) {
+    resp_body <- cached_resp |>
       httr2::resp_body_string()
 
     return(resp_body)
