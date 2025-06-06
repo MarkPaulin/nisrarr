@@ -66,7 +66,7 @@ get_metadata_field(claimant_count, "contact")
 
 ## Help wanted / things that need done
 
-There is minimal error handling at the moment. If you're using this package and get an error message, please open an issue!
+There isn't much error handling at the moment. If you're using this package and get an error message, please open an issue!
 
 ## Inspiration
 
