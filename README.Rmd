@@ -47,7 +47,7 @@ library(nisrarr)
 head(nisra_search(keyword = "claimant"))
 ```
 
-`nisra_read_data()` can be used to download a dataset from the NISRA data 
+`nisra_read_dataset()` can be used to download a dataset from the NISRA data 
 portal as a data-frame:
 
 ```{r data}

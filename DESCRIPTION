@@ -31,6 +31,12 @@ Imports:
     vctrs,
     xml2
 Suggests: 
+    ggplot2,
+    knitr,
+    prettyunits,
+    rmarkdown,
+    scales,
     testthat (>= 3.0.0),
     vcr (>= 0.6.0)
 Config/testthat/edition: 3
+VignetteBuilder: knitr

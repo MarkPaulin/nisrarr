@@ -15,7 +15,13 @@ portal](https://data.nisra.gov.uk) directly from R.
 
 ## Installation
 
-You can install the development version of nisrarr from
+Install nisrarr from CRAN with:
+
+``` r
+install.packages("nisrarr")
+```
+
+Alternatively, you can install the development version of nisrarr from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -40,7 +46,7 @@ head(nisra_search(keyword = "claimant"))
 #> 3 CCMLGD       Claimant Count … Month     <chr [3]>          2025-05-14 09:30:00
 ```
 
-`nisra_read_data()` can be used to download a dataset from the NISRA
+`nisra_read_dataset()` can be used to download a dataset from the NISRA
 data portal as a data-frame:
 
 ``` r
@@ -86,8 +92,8 @@ get_metadata_field(claimant_count, "contact")
 
 ## Help wanted / things that need done
 
-There is no error handling at the moment. If you’re using this package
-and get an error message, please open an issue!
+There isn’t much error handling at the moment. If you’re using this
+package and get an error message, please open an issue!
 
 ## Inspiration
 
