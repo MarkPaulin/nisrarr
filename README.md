@@ -8,6 +8,8 @@
 [![R-CMD-check](https://github.com/MarkPaulin/nisrarr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MarkPaulin/nisrarr/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/MarkPaulin/nisrarr/graph/badge.svg)](https://app.codecov.io/gh/MarkPaulin/nisrarr)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/nisrarr)](https://CRAN.R-project.org/package=nisrarr)
 <!-- badges: end -->
 
 `nisrarr` is a package for accessing data from the [NISRA data
