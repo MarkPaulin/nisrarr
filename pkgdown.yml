@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   introduction: introduction.html
-last_built: 2025-06-06T20:16Z
+last_built: 2025-06-06T20:26Z
 urls:
   reference: https://markpaulin.github.io/nisrarr/reference
   article: https://markpaulin.github.io/nisrarr/articles
