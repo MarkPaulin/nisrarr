@@ -72,7 +72,7 @@ get_metadata(claimant_count)
 #> Label: Claimant Count Monthly Data
 #> Subject: Claimant Count
 #> Type: Official statistics
-#> Updated: 2025-03-21T9:30:00.000Z
+#> Updated: 2025-05-14T9:30:00.000Z
 #> Note: The claimant count is an administrative data source derived from Jobs and Benefits Offices ...
 #> Contact: Economic and Labour Market Statistics
 #> Contact email: economicstats@nisra.gov.uk

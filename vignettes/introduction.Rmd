@@ -119,7 +119,7 @@ updated |>
 ## Caching
 
 By default, nisrarr caches data fetch from the data portal API to speed up 
-repeatedly fetching the same data. Results are cached for 24 hours then removed,
+repeatedly fetching the same data. Results are cached for 1 hour then removed,
 or the cached values can be ignored by setting `flush_cache = TRUE` in 
 `nisra_search()` or `nisra_read_dataset()`. Caching is useful when working 
 interactively, but it is better to fetch data directly if it's part of a larger

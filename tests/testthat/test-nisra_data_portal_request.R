@@ -75,6 +75,18 @@ vcr::use_cassette("nisra_read_dataset", {
   })
 })
 
+vcr::use_cassette("nisra_cache", {
+  test_that("cache is used", {
+    df <- nisra_read_dataset("CCMLGD", flush_cache = TRUE)
+    df2 <- nisra_read_dataset("CCMLGD")
+
+    expect_identical(df, df2)
+
+    cache_keys <- nisrarr_cache$info()
+    expect_true(length(cache_keys) > 0)
+  })
+})
+
 vcr::use_cassette("missing_dataset", {
   test_that("message is shown if dataset does not exist", {
     expect_error(
