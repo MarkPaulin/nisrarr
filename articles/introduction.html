@@ -221,8 +221,8 @@ fetch specific fields using <code><a href="../reference/get_metadata_field.html"
 <h3 id="caching">Caching<a class="anchor" aria-label="anchor" href="#caching"></a>
 </h3>
 <p>By default, nisrarr caches data fetch from the data portal API to
-speed up repeatedly fetching the same data. Results are cached for 24
-hours then removed, or the cached values can be ignored by setting
+speed up repeatedly fetching the same data. Results are cached for 1
+hour then removed, or the cached values can be ignored by setting
 <code>flush_cache = TRUE</code> in <code><a href="../reference/nisra_search.html">nisra_search()</a></code> or
 <code><a href="../reference/nisra_read_dataset.html">nisra_read_dataset()</a></code>. Caching is useful when working
 interactively, but it is better to fetch data directly if it’s part of a
