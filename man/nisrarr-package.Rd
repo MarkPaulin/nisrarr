@@ -12,6 +12,7 @@ Download data from the Northern Ireland Statistics and Research Agency (NISRA) d
 Useful links:
 \itemize{
   \item \url{https://github.com/MarkPaulin/nisrarr}
+  \item \url{https://markpaulin.github.io/nisrarr/}
   \item Report bugs at \url{https://github.com/MarkPaulin/nisrarr/issues}
 }
 
