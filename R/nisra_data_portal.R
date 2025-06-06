@@ -11,7 +11,7 @@ nisra_data_portal_request <- function(method, ...) {
 
   req <- httr2::request("https://ws-data.nisra.gov.uk/public/api.restful") |>
     httr2::req_user_agent("nisrarr (http://github.com/MarkPaulin/nisrarr)") |>
-    httr2::req_throttle(30 / 60) |>
+    httr2::req_throttle(getOption("nisrarr.throttle", 60)) |>
     httr2::req_url_path_append(method)
 
   if (!is.null(params)) {
@@ -26,14 +26,10 @@ nisra_data_portal_request <- function(method, ...) {
 
 
 nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
-  cache <- cachem::cache_disk(
-    tools::R_user_dir("nisrarr", "cache"),
-    max_age = 60 * 60 * 24
-  )
   params <- list(...)
   key <- rlang::hash(list(method, params))
 
-  cached_resp <- cache$get(key)
+  cached_resp <- nisrarr_cache$get(key)
   if (!cachem::is.key_missing(cached_resp) && !flush_cache) {
     resp_body <- cached_resp |>
       httr2::resp_body_string()
@@ -46,19 +42,7 @@ nisra_data_portal <- function(method, ..., flush_cache = FALSE) {
   resp_body <- resp |>
     httr2::resp_body_string()
 
-  # this doesn't feel right but can't find the error message anywhere else
-  if (stringr::str_detect(resp$headers$`Content-Type`, "text.html")) {
-    msg <- xml2::read_html(resp_body) |>
-      xml2::xml_find_first("body") |>
-      xml2::xml_text()
-
-    cli::cli_abort(c(
-      "Error from server!",
-      "i" = msg
-    ))
-  }
-
-  cache$set(key, resp)
+  nisrarr_cache$set(key, resp)
 
   resp_body
 }
@@ -248,7 +232,6 @@ nisra_search <- function(
   coll
 }
 
-nisrarr_clear_cache <- function() {
-  cache <- cachem::cache_disk(tools::R_user_dir("nisrarr", "cache"))
-  cache$reset()
-}
+nisrarr_cache <- cachem::cache_mem(
+  max_age = getOption("nisrarr.cache_max_age", Inf)
+)

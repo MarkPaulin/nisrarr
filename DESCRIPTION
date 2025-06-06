@@ -16,7 +16,6 @@ RoxygenNote: 7.3.2
 Depends: R (>= 4.1.0)
 Imports: 
     cachem,
-    cli,
     dplyr,
     glue,
     httr2,
@@ -28,8 +27,7 @@ Imports:
     rlang (>= 1.1.0),
     stringr,
     tibble,
-    vctrs,
-    xml2
+    vctrs
 Suggests: 
     ggplot2,
     knitr,
