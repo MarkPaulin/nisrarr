@@ -2,7 +2,7 @@
 
 S3method(get_metadata,default)
 S3method(get_metadata,nisra_df)
-S3method(get_metadata_field,default)
+S3method(get_metadata_field,data.frame)
 S3method(get_metadata_field,nisra_df)
 S3method(pillar::tbl_format_footer,nisra_df)
 S3method(print,nisra_meta)
