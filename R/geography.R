@@ -13,7 +13,16 @@ nisra_get_boundaries <- function(x) {
 
   geo_dim <- get_metadata_field(x, "dimension")[[geo_var]]
   geo_link <- geo_dim[["link"]][["enclosure"]][[1]][["href"]]
-  boundaries <- sf::read_sf(geo_link)
+
+  key <- rlang::hash(geo_link)
+  cached_boundaries <- nisrarr_cache$get(key)
+
+  if (cachem::is.key_missing(cached_boundaries)) {
+    boundaries <- sf::read_sf(geo_link)
+    nisrarr_cache$set(key, boundaries)
+  } else {
+    boundaries <- cached_boundaries
+  }
 
   lang <- get_metadata_field(x, "language")[["code"]]
   label <- geo_dim[["label"]]

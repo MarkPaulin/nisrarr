@@ -10,3 +10,5 @@
 ^doc$
 ^Meta$
 ^CRAN-SUBMISSION$
+^[\.]?air\.toml$
+^\.vscode$
