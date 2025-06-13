@@ -87,34 +87,35 @@ what variables are in the data.</p>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nisra_search.html">nisra_search</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
-<span><span class="co">#&gt;   dataset_code    dataset_label frequency dataset_dimensions updated            </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>             </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> VEHICLEACCESSI… Accessibilit… Financia… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-02 <span style="color: #949494;">14:03:51</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> INDTRUSTMEDIAEQ Indicator - … Year      <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-03 <span style="color: #949494;">11:54:54</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> INDTRUSTASMBEQ  Indicator - … Year      <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-03 <span style="color: #949494;">11:54:02</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ARTCULEQ        Arts and Cul… Financia… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-08 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> CULTIDEQ        Respected Cu… Year      <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-08 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> FADPS           Northern Ire… Year      <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-10 <span style="color: #949494;">11:17:42</span></span></span></code></pre></div>
+<span><span class="co">#&gt;   dataset_code dataset_label    frequency dataset_dimensions updated            </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>             </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> WBY8SEEQ     Wellbeing - Sel… Ad-hoc y… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-04 <span style="color: #949494;">15:51:34</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> WBY8SEOTHR   Wellbeing - Sel… Ad-hoc y… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-04 <span style="color: #949494;">16:02:37</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> WBY912SEEQ   Wellbeing - Sel… Ad-hoc y… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-04 <span style="color: #949494;">16:00:43</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> WBY912SEOTHR Wellbeing - Sel… Ad-hoc y… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-04 <span style="color: #949494;">16:04:32</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> WBY912SELGD  Wellbeing - Sel… Ad-hoc y… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-04 <span style="color: #949494;">16:05:29</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> WBY8LOCEQ    Wellbeing - Loc… Ad-hoc y… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-04-04 <span style="color: #949494;">16:06:23</span></span></span></code></pre></div>
 <p>If we don’t know the exact name of the dataset we’re interested in,
 we can search using a keyword that appears in the label or a set of
 variables that we need:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/nisra_search.html">nisra_search</a></span><span class="op">(</span>keyword <span class="op">=</span> <span class="st">"employ"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 5</span></span></span>
-<span><span class="co">#&gt;   dataset_code  dataset_label   frequency dataset_dimensions updated            </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>             </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> EMPVACHSCT    Employment vac… Financia… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-07 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> EMPVACAA      Employment vac… Financia… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-07 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> EMPVACLGD     Employment vac… Financia… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-07 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> EMPVACDEA     Employment vac… Financia… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-07 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> KS605NI       Industry of Em… Census Y… <span style="color: #949494;">&lt;chr [5]&gt;</span>          2025-05-08 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> INDEMPRATELGD Indicator - Em… Year      <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-08 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> INDEMPRATEAA  Indicator - Em… Year      <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-08 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> QEJOBS01      Quarterly Empl… Quarter   <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-03-20 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> QEJOBS02      Quarterly Empl… Quarter   <span style="color: #949494;">&lt;chr [4]&gt;</span>          2025-03-20 <span style="color: #949494;">09:30:00</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 5</span></span></span>
+<span><span class="co">#&gt;    dataset_code  dataset_label  frequency dataset_dimensions updated            </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>             </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> C21502EQ      Industry of e… Census Y… <span style="color: #949494;">&lt;chr [4]&gt;</span>          2025-06-12 <span style="color: #949494;">09:30:00</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> EMPVACHSCT    Employment va… Financia… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-07 <span style="color: #949494;">09:30:00</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> EMPVACAA      Employment va… Financia… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-07 <span style="color: #949494;">09:30:00</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> EMPVACLGD     Employment va… Financia… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-07 <span style="color: #949494;">09:30:00</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> EMPVACDEA     Employment va… Financia… <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-07 <span style="color: #949494;">09:30:00</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> KS605NI       Industry of E… Census Y… <span style="color: #949494;">&lt;chr [5]&gt;</span>          2025-05-08 <span style="color: #949494;">09:30:00</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> INDEMPRATELGD Indicator - E… Year      <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-08 <span style="color: #949494;">09:30:00</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> INDEMPRATEAA  Indicator - E… Year      <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-05-08 <span style="color: #949494;">09:30:00</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> QEJOBS01      Quarterly Emp… Quarter   <span style="color: #949494;">&lt;chr [3]&gt;</span>          2025-06-10 <span style="color: #949494;">09:30:00</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> QEJOBS02      Quarterly Emp… Quarter   <span style="color: #949494;">&lt;chr [4]&gt;</span>          2025-06-10 <span style="color: #949494;">09:30:00</span></span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/nisra_search.html">nisra_search</a></span><span class="op">(</span>variables <span class="op">=</span> <span class="st">"Free School Meal Entitlement"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 5</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 5</span></span></span>
 <span><span class="co">#&gt;   dataset_code dataset_label    frequency dataset_dimensions updated            </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>             </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DESLSAAA     School Leavers … Academic… <span style="color: #949494;">&lt;chr [4]&gt;</span>          2025-05-29 <span style="color: #949494;">09:30:00</span></span></span>
@@ -123,7 +124,8 @@ variables that we need:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> DESLSDAA     School Leavers … Academic… <span style="color: #949494;">&lt;chr [4]&gt;</span>          2025-05-29 <span style="color: #949494;">09:30:00</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> DESLSDHSCT   School Leavers … Academic… <span style="color: #949494;">&lt;chr [4]&gt;</span>          2025-05-29 <span style="color: #949494;">09:30:00</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> DESLSDLGD    School Leavers … Academic… <span style="color: #949494;">&lt;chr [4]&gt;</span>          2025-05-29 <span style="color: #949494;">09:30:00</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> DESLSADEA    School Leavers … Academic… <span style="color: #949494;">&lt;chr [4]&gt;</span>          2025-06-05 <span style="color: #949494;">09:17:36</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> DESLSADEA    School Leavers … Academic… <span style="color: #949494;">&lt;chr [4]&gt;</span>          2025-06-05 <span style="color: #949494;">09:17:36</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> DESLSDS      School Leavers … Academic… <span style="color: #949494;">&lt;chr [5]&gt;</span>          2025-06-12 <span style="color: #949494;">14:29:24</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="fetching-data">Fetching data<a class="anchor" aria-label="anchor" href="#fetching-data"></a>
@@ -215,7 +217,7 @@ fetch specific fields using <code><a href="../reference/get_metadata_field.html"
 <span><span class="va">updated</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html" class="external-link">ymd_hms</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">prettyunits</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/prettyunits/man/time_ago.html" class="external-link">time_ago</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "29 days ago"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "about a month ago"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="caching">Caching<a class="anchor" aria-label="anchor" href="#caching"></a>
