@@ -72,12 +72,14 @@ nisra_read_dataset <- function(dataset_code, flush_cache = FALSE) {
     flush_cache = flush_cache
   )
 
-  resp_list <- jsonlite::fromJSON(response)
+  resp_list <- jsonlite::fromJSON(response, simplifyVector = FALSE)
   meta <- c(
     resp_list[["extension"]],
     note = resp_list[["note"]],
     label = resp_list[["label"]],
-    updated = resp_list[["updated"]]
+    updated = resp_list[["updated"]],
+    resp_list["dimension"],
+    resp_list["role"]
   )
 
   nisra_df(

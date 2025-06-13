@@ -27,7 +27,7 @@ get_metadata_field <- function(x, field) {
 }
 
 #' @exportS3Method
-get_metadata_field.default <- function(x, field) {
+get_metadata_field.data.frame <- function(x, field) {
   x_type <- obj_type_friendly(x)
   stop(paste("`get_metadata_field` not implemented for", x_type))
 }
