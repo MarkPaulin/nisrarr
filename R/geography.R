@@ -3,6 +3,8 @@
 #' @param x A `nisra_df` dataset
 #' @return An `sf` object with all the columns of `x` and an additional geometry
 #' column.
+#'
+#' @export
 nisra_get_boundaries <- function(x) {
   rlang::check_installed("sf", reason = "to use `nisra_get_boundaries()`")
 

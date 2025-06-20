@@ -21,7 +21,8 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/nisrarr)](https://CRAN.R-project.org/package=nisrarr)
 <!-- badges: end -->
 
-`nisrarr` is a package for accessing data from the [NISRA data portal](https://data.nisra.gov.uk) directly from R.
+`nisrarr` is a package for accessing data from the 
+[NISRA data portal](https://data.nisra.gov.uk) directly from R.
 
 ## Installation
 
@@ -31,7 +32,8 @@ Install nisrarr from CRAN with:
 install.packages("nisrarr")
 ```
 
-Alternatively, you can install the development version of nisrarr from [GitHub](https://github.com/) with:
+Alternatively, you can install the development version of nisrarr from 
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
@@ -65,9 +67,31 @@ get_metadata(claimant_count)
 get_metadata_field(claimant_count, "contact")
 ```
 
+You can also access boundaries from the data portal. This isn't available for 
+all datasets, so your mileage may vary:
+
+```{r bounds}
+library(dplyr)
+library(ggplot2)
+
+claimant_count |> 
+  nisra_get_boundaries() |> 
+  filter(Statistic == "Percentage Claimant Count", Month == max(Month)) |> 
+  ggplot(aes(fill = value)) +
+  geom_sf() +
+  scale_fill_binned(
+    type = "viridis", 
+    n.breaks = 6, 
+    name = "Percentage Claimant Count",
+    labels = scales::label_percent(scale = 1)
+  )
+```
+
+
 ## Help wanted / things that need done
 
-There isn't much error handling at the moment. If you're using this package and get an error message, please open an issue!
+There isn't much error handling at the moment. If you're using this package and 
+get an error message, please open an issue!
 
 ## Inspiration
 

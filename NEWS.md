@@ -1,5 +1,7 @@
 # nisrarr (development version)
 
+* Download boundaries from the data portal.
+
 # nisrarr 0.1.1
 
 * Stop fetching missing items from cache (#8).

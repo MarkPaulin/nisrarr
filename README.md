@@ -43,9 +43,9 @@ head(nisra_search(keyword = "claimant"))
 #> # A tibble: 3 × 5
 #>   dataset_code dataset_label    frequency dataset_dimensions updated            
 #>   <chr>        <chr>            <chr>     <list>             <dttm>             
-#> 1 CCMSOA       Claimant Count … Month     <chr [3]>          2025-05-13 12:37:41
-#> 2 CCMAA        Claimant Count … Month     <chr [3]>          2025-05-14 09:30:00
-#> 3 CCMLGD       Claimant Count … Month     <chr [3]>          2025-05-14 09:30:00
+#> 1 CCMLGD       Claimant Count … Month     <chr [3]>          2025-06-10 10:18:23
+#> 2 CCMAA        Claimant Count … Month     <chr [3]>          2025-06-10 10:17:45
+#> 3 CCMSOA       Claimant Count … Month     <chr [3]>          2025-06-10 10:16:16
 ```
 
 `nisra_read_dataset()` can be used to download a dataset from the NISRA
@@ -74,7 +74,7 @@ get_metadata(claimant_count)
 #> Label: Claimant Count Monthly Data
 #> Subject: Claimant Count
 #> Type: Official statistics
-#> Updated: 2025-05-14T9:30:00.000Z
+#> Updated: 2025-06-10T10:18:23.357Z
 #> Note: The claimant count is an administrative data source derived from Jobs and Benefits Offices ...
 #> Contact: Economic and Labour Market Statistics
 #> Contact email: economicstats@nisra.gov.uk
@@ -91,6 +91,38 @@ get_metadata_field(claimant_count, "contact")
 #> $phone
 #> [1] "+44 (0)28 90529475"
 ```
+
+You can also access boundaries from the data portal. This isn’t
+available for all datasets, so your mileage may vary:
+
+``` r
+library(dplyr)
+#> Warning: package 'dplyr' was built under R version 4.4.1
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.4.3
+
+claimant_count |> 
+  nisra_get_boundaries() |> 
+  filter(Statistic == "Percentage Claimant Count", Month == max(Month)) |> 
+  ggplot(aes(fill = value)) +
+  geom_sf() +
+  scale_fill_binned(
+    type = "viridis", 
+    n.breaks = 6, 
+    name = "Percentage Claimant Count",
+    labels = scales::label_percent(scale = 1)
+  )
+```
+
+<img src="man/figures/README-bounds-1.png" width="100%" />
 
 ## Help wanted / things that need done
 
