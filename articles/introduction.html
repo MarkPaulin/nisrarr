@@ -139,7 +139,7 @@ variables included in the breakdown:</p>
 <code class="sourceCode R"><span><span class="va">mye</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nisra_read_dataset.html">nisra_read_dataset</a></span><span class="op">(</span><span class="st">"MYE01T04"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mye</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span></span>
-<span><span class="co">#&gt;   Statistic      Year  Local Government Dis…¹ Broad age band (4 ca…² Sex   value</span></span>
+<span><span class="co">#&gt;   STATISTIC      Year  Local Government Dis…¹ Broad age band (4 ca…² Sex   value</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Mid-year popu… 2001  Antrim and Newtownabb… Age 0-15               Fema… <span style="text-decoration: underline;">14</span>076</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Mid-year popu… 2001  Antrim and Newtownabb… Age 0-15               Males <span style="text-decoration: underline;">14</span>877</span></span>
@@ -199,7 +199,7 @@ contact information:</p>
 <span><span class="co">#&gt; Label: Mid-year population estimates</span></span>
 <span><span class="co">#&gt; Subject: Population</span></span>
 <span><span class="co">#&gt; Type: Official statistics</span></span>
-<span><span class="co">#&gt; Updated: 2025-05-08T9:30:00.000Z</span></span>
+<span><span class="co">#&gt; Updated: 2025-06-13T9:30:00.000Z</span></span>
 <span><span class="co">#&gt; Note: [b]Description of Data[/b]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Notes:</span></span>
@@ -217,7 +217,7 @@ fetch specific fields using <code><a href="../reference/get_metadata_field.html"
 <span><span class="va">updated</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html" class="external-link">ymd_hms</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">prettyunits</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/prettyunits/man/time_ago.html" class="external-link">time_ago</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "about a month ago"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "7 days ago"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="caching">Caching<a class="anchor" aria-label="anchor" href="#caching"></a>
